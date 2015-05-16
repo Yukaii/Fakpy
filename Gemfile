@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
@@ -43,6 +43,10 @@ gem 'kaminari'
 # gem for parsers
 gem 'rest-client'
 gem 'nokogiri'
+gem 'capybara'
+gem 'selenium-webdriver'
+gem 'poltergeist'
+gem 'hashie'
 
 gem 'unicorn'
 
@@ -51,6 +55,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'rails-observers'
 
 gem 'newrelic_rpm'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
