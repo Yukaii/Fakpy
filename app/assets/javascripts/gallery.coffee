@@ -3,8 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $container = $('#container')
+  imagesLoaded '#container', ->
+    $container = $('#container')
 
-  $container.isotope({})
-    itemSelector: '.gallery-item'
-    layoutMode: 'fitRows'
+    $container.isotope
+      itemSelector: '.gallery-item'
+      # layoutMode: 'fitRows'
