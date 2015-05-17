@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.fancybox
+//= require jquery.fancybox-buttons
+//= require jquery.fancybox-media
+//= require jquery.fancybox-thumbs
 //= bootstrap
 //= require turbolinks
 //= require_tree .

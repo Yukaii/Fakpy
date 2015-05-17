@@ -7,7 +7,9 @@ html
     = csrf_meta_tags
     script src= "//imagesloaded.desandro.com/imagesloaded.pkgd.min.js"
     script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.js"
-  body
+    script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" type="text/javascript"
+
+  body data-no-turbolink='true'
     .container-fluid
       = render 'partials/navbar'
       = yield

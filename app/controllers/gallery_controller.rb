@@ -1,5 +1,9 @@
 class GalleryController < ApplicationController
   def index
-    @images = Image.weird.page(params[:page])
+    @images = Image.where(gender: 'female').weird.page(params[:page])
+  end
+
+  def about
+
   end
 end

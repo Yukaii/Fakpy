@@ -3,9 +3,10 @@
   .col-md-10
     #container
       - @images.each do |image|
-        .gallery-item
-          = image_tag(image.url, class: 'gallery-image')
-          .gallery-count= image.alikes.count
+        .gallery-item alike-count="#{image.alikes.count}"
+          = link_to(image.url, class: 'gallery-image-link', rel: 'gallery')
+            = image_tag(image.url, class: 'gallery-image', alt: "")
+          / .gallery-count= image.alikes.count
     .row
       = paginate @images, :outer_window => 3
   .col-md-1
