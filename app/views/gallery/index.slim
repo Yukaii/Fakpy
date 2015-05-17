@@ -1,0 +1,11 @@
+.row
+  .col-md-1
+  .col-md-10
+    #container
+      - @images.each do |image|
+        .gallery-item
+          = image_tag(image.url, class: 'gallery-image')
+          .gallery-count= image.alikes.count
+    .row
+      = paginate @images, :outer_window => 3
+  .col-md-1

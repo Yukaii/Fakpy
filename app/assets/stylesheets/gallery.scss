@@ -1,3 +1,27 @@
 // Place all the styles related to the gallery controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.gallery-item {
+  width: 19%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  display: inline-block;
+  position: relative;
+
+  .gallery-image {
+    width: 100%;
+  }
+
+  .gallery-count {
+    display: inline-block;
+    position: absolute;
+    top: 80%;
+    right: 50%;
+    background: black;
+    font-size: 35px;
+    text-align: center;
+    color: white;
+  }
+}
+

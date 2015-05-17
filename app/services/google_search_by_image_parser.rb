@@ -30,7 +30,14 @@ module GoogleSearchByImageParser
 
       # images = crawler.search_by(pics[0..-1])
       # images = crawler.search_by("https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/1271084_10152203108461729_809245696_o.png")
-      binding.pry
+      # binding.pry
+    end
+
+    def update_image(image)
+      crawler = Crawler.new
+      alikes = crawler.search_by(image.url)
+      image.alikes = alikes
+      image.save
     end
 
   end
