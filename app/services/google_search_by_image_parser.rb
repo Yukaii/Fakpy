@@ -2,21 +2,32 @@ require 'capybara/poltergeist'
 
 module GoogleSearchByImageParser
   class << self
-    def prepare_test
+    def import_task
       data = Hashie::Mash.new(JSON.parse(File.read(Rails.root.join('doc', 'pic.json'))))
       pics = data.data.map(&:pic)
 
-      errors = []
+      datas = []
 
       crawler = Crawler.new
-      pics[0..50].each_with_index do |pic, i|
+      pics.each_with_index do |pic, i|
         print "#{i}, "
+        next if not Image.find_by(url: data.data[i].pic).nil?
+
         images = crawler.search_by(pic)
-        if images.count > 0
-          errors << data.data[i]
-          errors.last.images = images
-        end
+        # datas << data.data[i]
+        # datas.last.images = images
+        image = data.data[i]
+        image.images = images
+        Image.create(
+          url: image.pic,
+          gender: image.gender,
+          age: image.age,
+          sid: image.sid,
+          alikes: image.images
+        )
+
       end
+
       # images = crawler.search_by(pics[0..-1])
       # images = crawler.search_by("https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/1271084_10152203108461729_809245696_o.png")
       binding.pry
