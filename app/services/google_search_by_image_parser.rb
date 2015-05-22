@@ -29,7 +29,6 @@ module GoogleSearchByImageParser
       end
 
       # images = crawler.search_by(pics[0..-1])
-      # images = crawler.search_by("https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/1271084_10152203108461729_809245696_o.png")
       # binding.pry
     end
 
@@ -46,13 +45,16 @@ module GoogleSearchByImageParser
     include Capybara::DSL
     def initialize
       Capybara.register_driver :poltergeist_debug do |app|
-        Capybara::Poltergeist::Driver.new(app, {
+        driver = Capybara::Poltergeist::Driver.new(app, {
           # debug: true,
           # js_errors: true
         })
+        # config request user agent, simple Zzzzzz
+        driver.headers = { "User-Agent" => "Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1" }
+        driver
       end
-      Capybara.current_driver = :selenium
-      @base_url = "https://www.google.com/searchbyimage?site=search&image_url="
+      Capybara.current_driver = :poltergeist_debug
+      @base_url = "https://www.google.com/searchbyimage?hl=en&site=search&image_url="
     end
 
     def search_by(image_url=nil)
@@ -63,6 +65,7 @@ module GoogleSearchByImageParser
       # r = RestClient.get(url)
       # visit url
       _html = html
+      binding.pry
       if _html.include?('No other sizes of this image found.') || html.include?("找不到這個圖片的其他大小版本")
         return []
       else
@@ -80,7 +83,7 @@ module GoogleSearchByImageParser
 
     def parse_search_result(html=nil)
       doc = Nokogiri::HTML(html)
-      images = doc.css('a').select {|d| d && d[:href] && d[:href].include?('http://www.google.com.tw/imgres') }.map do |d|
+      images = doc.css('a').select {|d| d && d[:href] && d[:href].include?('http://www.google.com/imgres') }.map do |d|
         if d[:href]
           h = URI::decode_www_form(URI(d[:href]).query).to_h;
           if h["imgurl"].include?('x-raw-image')

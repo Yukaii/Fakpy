@@ -1,7 +1,7 @@
 Fakpy - 照騙小幫手
 ===============
 
-參加政大黑客松做的玩具，Rails + Capybara + Selenium
+參加政大黑客松做的玩具，Rails + Capybara + Poltergeist
 
 又一個爬蟲類衍生應用程式。前端還是一樣糟，黑客松嘛，呵呵。
 
