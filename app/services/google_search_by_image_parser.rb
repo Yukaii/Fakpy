@@ -65,7 +65,6 @@ module GoogleSearchByImageParser
       # r = RestClient.get(url)
       # visit url
       _html = html
-      binding.pry
       if _html.include?('No other sizes of this image found.') || html.include?("找不到這個圖片的其他大小版本")
         return []
       else
